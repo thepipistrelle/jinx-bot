@@ -41,5 +41,5 @@ async def tarot(ctx, author, question):
 async def on_ready():
     print("jinx has entered the spectral wavelength")
 
-#final run : do not put anything under here!
+#final run : do not put anything under here!!
 jinx.run(token)
