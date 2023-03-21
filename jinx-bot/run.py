@@ -18,15 +18,23 @@ async def tarot(ctx, author, question):
         card = str(response_card)
         print(card)
     #compare card to find corresponding description for the card chosen
-    with open("jinx-bot\description.txt", "r") as file2:
-        descriptions = file2.readlines()
-        for line in descriptions:
-            if line.startswith(card):
-                card_description = str(line)
-                reading = (card_description.split(':', 1)[-1])
-                print(reading)
+    with open("jinx-bot\\upright.txt", "r") as file2, open("jinx-bot\\reversed.txt", "r") as file3:
+        uprights=file2.readlines()
+        reverseds=file3.readlines()
 
-                await ctx.send("your card : "+card+"\n"+"your card's reading : "+reading)
+        for line in reverseds:
+            if (card+" : ") in line:
+                description = str(line)
+                reading = (description.split(':', 1)[-1])
+                print(reading)
+            else:
+                for line in uprights:
+                    if (card+" : ") in line:
+                        description = str(line)
+                        reading = (description.split(':', 1)[-1])
+                        print(reading)
+
+        await ctx.send("your card : "+card+"\n"+"your card's reading : "+reading)
 
 #start-up loads
 @jinx.event
